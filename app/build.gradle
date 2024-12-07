@@ -1,0 +1,61 @@
+plugins {
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.jetbrains.kotlin.android)
+}
+
+android {
+    namespace 'com.mallcco.andy.laboratorio16'
+    compileSdk 35
+
+    defaultConfig {
+        applicationId "com.mallcco.andy.laboratorio16"
+        minSdk 24
+        targetSdk 35
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+//habilita la función de View Binding
+    buildFeatures{
+        viewBinding true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    implementation libs.androidx.core.ktx
+    implementation libs.androidx.appcompat
+    implementation libs.material
+    implementation libs.androidx.activity
+    implementation libs.androidx.constraintlayout
+    testImplementation libs.junit
+    androidTestImplementation libs.androidx.junit
+    androidTestImplementation libs.androidx.espresso.core
+//define la version de CameraX
+    def camerax_version = "1.0.1"
+//permite usar la implementación de Camera2 de CameraX, la cual es una api avanzada
+    implementation "androidx.camera:camera-camera2:$camerax_version"
+//integra CameraX con el ciclo de vida de android
+    implementation "androidx.camera:camera-lifecycle:$camerax_version"
+//alpha27 proporciona una vista previa de la cámara
+    implementation "androidx.camera:camera-view:1.0.0-alpha27"
+//biblioteca glide para cargar y mostrar imágenes que se capturan con la camara
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+
+}
